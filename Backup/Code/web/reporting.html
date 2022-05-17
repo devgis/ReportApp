@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> 
+ 	<meta name="apple-touch-fullscreen" content="YES"> 
+ 	<meta name="format-detection" content="telephone=no"> 
+ 	<meta name="apple-mobile-web-app-capable" content="yes"> 
+ 	<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    <title>企业报表</title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"> 
+ 	<link href="css/login.css" rel="stylesheet" type="text/css"> 
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="css/jqpagination.css">
+    <link rel="stylesheet" type="text/css" href="css/reporting.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>   
+    <script type="text/javascript" src="js/paging.js"></script>
+
+    <style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			/*
+			  * 外面盒子样式---自己定义
+			  */
+			#page{
+				float: right;
+			}
+			.page_div {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				font-size: 15px;
+				font-family: "microsoft yahei";
+				color: #666666;
+				margin-right: 10px;
+				padding-left: 20px;
+				box-sizing: border-box;
+			}
+			/*
+			 * 页数按钮样式
+			 */
+			.page_div a {
+				height: 25px;
+				line-height: 25px;
+				vertical-align: middle;
+				text-align: center;
+				margin: 0 4px;
+				cursor: pointer;
+				line-height: 28px;
+				color: #666666;
+				font-size: 13px;
+				display: inline-block;
+			}
+			#firstPage,
+			#lastPage{
+				width: 25px;
+				height: 25px;
+				color: #0073A9;
+			}
+
+			#firstPage{
+				background-image: url("image/firstPage.png");
+				background-position:center;
+				background-size: 50% 50%;
+				background-repeat: no-repeat;
+			}
+			#currentPages {
+				border: 1px solid #0073A9!important;
+				width: 35px;
+				height: 18px;
+    			line-height: 18px;
+			}
+			#totalPages{
+				font-size: 12px;
+			}
+
+			#prePage,
+			#nextPage{
+				width: 25px;
+				height: 25px;
+				color: #0073A9;
+			}
+
+			#nextPage{
+				background-image: url("image/nextPage.png");
+				background-position:center;
+				background-size: 50% 50%;
+				background-repeat: no-repeat;
+
+			}
+
+			#prePage{
+				background-image: url("image/prePage.png");
+				background-position:center;
+				background-size: 50% 50%;
+				background-repeat: no-repeat;
+			}
+			#lastPage{
+				background-image: url("image/lastPage.png");
+				background-position:center;
+				background-size: 50% 50%;
+				background-repeat: no-repeat;
+			}
+
+			.page_div .current {
+				background-color: #0073A9;
+				border-color: #0073A9;
+				color: #FFFFFF;
+			}
+			.totalPages {
+				margin: 0 10px;
+			}
+			.totalPages span,
+			.totalSize span {
+				color: #0073A9;
+				margin: 0 5px;
+			}
+			.currentPages{
+				border: 1px solid #eee;
+				padding: 5px 15px;
+			}
+		</style>
+</head>
+<body>
+
+	<article id="login"> 
+		<header class="header head_top"> 
+		<a class="back" name="">
+			</i>登录</a> 
+		</header> 
+	 	<p class="toast" style="display:none"><span>账号或密码不正确</span></p> 
+	 	<section class="login_box clearfix"> 
+	 	<form class="login_form"> 
+		 	<a> 
+		 		<i class="key number"></i> 
+		 		<input type="text" placeholder="输入账号/手机号" class="logName logInfor"> 
+		 	</a> 
+		 	<a> 
+		 		<i class="key mima"></i> 
+		 		<input type="password" placeholder="输入密码" class="logPass logInfor"> 
+		 		<input type="checkbox" class="eye" checked=""> 
+		 	</a>
+		 	<div id="error"></div> 
+	 	</form> 
+		<div class="forget clearfix"> 
+		<div> <input type="checkbox" class="checkbox" id="check" checked=""><span>记住我</span> </div> <a>忘记密码?</a> </div>
+
+		<a class="sure login_btn disabled" id="aaa">登&nbsp;录</a>
+	</article>
+
+	<script src="js/zepto.min.js"></script> 
+	
+
+
+	<div id="reporting_data" class="hidden">
+
+		<table id="consumption_schedule" cellspacing="0" cellpadding="0">
+			<tr class="table_head">
+				<th>姓名</th>
+				<th>入股金额</th>
+				<th>茶叶年消费任务</th>
+				<th>完成返利率(非茶叶不返利)</th>
+				<th>消费项目</th>
+				<th>消费时间</th>
+				<th>消费金额</th>
+				<th>福利招待次数</th>
+				<th>福利剩余次数</th>
+			</tr>
+
+
+			<!-- ajax异步获取数据 -->
+			<!-- <tr class="table_item">
+				<td>张三</td>
+				<td>0</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item">
+				<td>李四</td>
+				<td>1</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item">
+				<td>张三</td>
+				<td>2</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item">
+				<td>李四</td>
+				<td>3</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>张三</td>
+				<td>4</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>李四</td>
+				<td>5</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>张三</td>
+				<td>6</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>李四</td>
+				<td>7</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>张三</td>
+				<td>8</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>李四</td>
+				<td>9</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr>
+			<tr class="table_item hidden">
+				<td>张三</td>
+				<td>10</td>
+				<td>22</td>
+				<td>33</td>
+				<td>44</td>
+				<td>55</td>
+				<td>66</td>
+				<td>77</td>
+				<td>88</td>
+			</tr> -->			
+		</table>
+		<div id="page" class="page_div"></div>
+	
+	</div>
+	<script src="js/login.js"></script>
+	<script type="text/javascript">
+
+		
+
+		function getData(result){
+			
+		}
+		$(function(){
+			
+			var totalItem;
+			/*13688888888
+        		654321*/
+        	/*url: "http://eai.ds-gold.cn/rpdata.ashx?m="+yonghuming+"&pw="+mima,*/
+
+        	 
+
+			function sendData(){
+				var yonghuming = logName.val();
+			        var mima = logPass.val();
+			        console.log(yonghuming)
+			        console.log(mima)
+				console.log("http://eai.ds-gold.cn/rpdata.ashx?m="+yonghuming+"&pw="+mima)
+		    	$.ajax({
+					type: "POST",
+					url: "http://eai.ds-gold.cn/rpdata.ashx?m="+yonghuming+"&pw="+mima,
+					/*url: "http://eai.ds-gold.cn/rpdata.ashx?m=13688888888&pw=654321",*/
+					crossDomain: true,
+					dataType: "jsonp",
+					headers:{"Content-Type":"text"},
+					jsonp: "callback",
+					jsonpCallback:'getData',   
+					success: function (result) { 
+						if(result.rs == 1){
+							$("#login").addClass("hidden")
+							$("#reporting_data").removeClass("hidden")
+
+
+							console.log(result.data)
+						totalItem = result.data.length; //数据总条数
+						var limitNum = 15;     //每页显示数量
+						var  pageNum =  Math.ceil(totalItem/limitNum);  //总页码数
+					 	console.log(totalItem);				 	
+					 	for(var i=0;i<result.data.length;i++){
+					 		var SL,SYCS;
+					 		if(result.data[i].SL === null){
+					 			SL = ""
+					 		}else{
+					 			SL = result.data[i].SL;
+					 		}
+
+					 		if(result.data[i].SYCS === null){
+					 			SYCS = ""
+					 		}else{
+					 			SYCS = result.data[i].SYCS; 
+					 		}
+
+					 		console.log(SL)
+					 		var temp = "";
+					 		temp+= "<tr class=\"table_item\">";
+					 		temp+= "<td>"+result.data[i].gkmc+"</td>";
+					 		temp+= "<td>"+result.data[i].rgje+"</td>";
+					 		temp+= "<td>"+result.data[i].XFE+"</td>";
+					 		temp+= "<td>"+result.data[i].FDL+"</td>";
+					 		temp+= "<td>"+result.data[i].vInvName+"</td>";
+					 		temp+= "<td>"+result.data[i].dtDate+"</td>";
+					 		temp+= "<td>"+result.data[i].fRealMoney+"</td>";
+					 		temp+= "<td>"+SL+"</td>";
+					 		temp+= "<td>"+SYCS+"</td>";
+					 		temp+= "</tr>"
+					 		$('.table_head').after(temp)
+					 	}
+					 	console.log("数据条数；"+$(".table_item").length)
+					 	console.log("每页显示数；"+limitNum)
+					 	console.log("总页码数："+pageNum)
+					 	console.log($(".table_item"))
+
+
+					 	$(".table_item").addClass("hidden")
+					 	
+					 	var shownum = limitNum;
+
+
+
+					 	if($(".table_item").length<limitNum)
+					 		shownum = $(".table_item").length
+					 	
+
+					 	console.log("实际数"+shownum)
+					 	console.log("系统数"+limitNum)
+
+
+						for(var i=0;i<shownum;i++){
+							$(".table_item").eq(i).removeClass("hidden")
+						}
+
+						 $("#page").paging({
+							pageNo:1,
+							totalPage: pageNum,
+							totalSize: totalItem,
+							callback: function(num){						 	
+						}
+
+						})
+
+
+
+						}else if(result.rs == 0){
+							$("#error").css("display","block");
+
+							$("#error").text(result.data)
+							setTimeout(function(){
+								$("#error").fadeOut()
+							},2000)
+							
+						}   
+						
+					},
+					error: function (xhr,status,error) {
+					    
+					   
+					}
+				});		
+		    }     
+			
+
+
+			console.log(totalItem)
+
+
+			function doSubmit() {
+				sendData()
+			}
+
+			$("#aaa").click(function(){
+			    doSubmit()
+			})
+			
+		});
+		
+
+
+
+		
+ 	</script>
+ 	
+</body>
+
+</html>

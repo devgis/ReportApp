@@ -1,0 +1,15 @@
+E:\Temp\HishopData\ReportData\ReportData.Common\bin\Debug\ReportData.Common.dll
+E:\Temp\HishopData\ReportData\ReportData.Common\bin\Debug\ReportData.Common.pdb
+E:\Temp\HishopData\ReportData\ReportData.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\Temp\HishopData\ReportData\ReportData.Common\obj\Debug\ReportData.Common.dll
+E:\Temp\HishopData\ReportData\ReportData.Common\obj\Debug\ReportData.Common.pdb
+E:\Work\ReportData\ReportData\ReportData.Common\bin\Debug\ReportData.Common.dll
+E:\Work\ReportData\ReportData\ReportData.Common\bin\Debug\ReportData.Common.pdb
+E:\Work\ReportData\ReportData\ReportData.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\Work\ReportData\ReportData\ReportData.Common\obj\Debug\ReportData.Common.dll
+E:\Work\ReportData\ReportData\ReportData.Common\obj\Debug\ReportData.Common.pdb
+E:\Work\2017\ReportData23\ReportData\ReportData.Common\bin\Debug\ReportData.Common.dll
+E:\Work\2017\ReportData23\ReportData\ReportData.Common\bin\Debug\ReportData.Common.pdb
+E:\Work\2017\ReportData23\ReportData\ReportData.Common\obj\Debug\ReportData.Common.csprojResolveAssemblyReference.cache
+E:\Work\2017\ReportData23\ReportData\ReportData.Common\obj\Debug\ReportData.Common.dll
+E:\Work\2017\ReportData23\ReportData\ReportData.Common\obj\Debug\ReportData.Common.pdb

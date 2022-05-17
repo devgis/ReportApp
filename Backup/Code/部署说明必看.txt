@@ -1,0 +1,8 @@
+配置说明
+web.config
+configuration/appSettings节
+加入
+		<add key="sqlstr" value="server=118.31.67.127\sql2008,7201;database=BS3000+_EAI_2016;user id=sa;password=f3h2y7e!2+changning#"/>
+
+
+然后其他文件替换到web目录

@@ -1,0 +1,5 @@
+E:\Temp\SignWeb\SignWeb\bin\SignWeb.dll
+E:\Temp\SignWeb\SignWeb\bin\SignWeb.pdb
+E:\Temp\SignWeb\SignWeb\obj\Debug\ResolveAssemblyReference.cache
+E:\Temp\SignWeb\SignWeb\obj\Debug\SignWeb.dll
+E:\Temp\SignWeb\SignWeb\obj\Debug\SignWeb.pdb

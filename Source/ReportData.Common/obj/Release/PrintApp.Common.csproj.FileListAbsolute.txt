@@ -1,0 +1,6 @@
+E:\Work\P2\PrintApp\PrintApp.Common\bin\Release\PrintApp.Common.dll
+E:\Work\P2\PrintApp\PrintApp.Common\bin\Release\PrintApp.Common.pdb
+E:\Work\P2\PrintApp\PrintApp.Common\bin\Release\MySql.Data.dll
+E:\Work\P2\PrintApp\PrintApp.Common\obj\Release\ResolveAssemblyReference.cache
+E:\Work\P2\PrintApp\PrintApp.Common\obj\Release\PrintApp.Common.dll
+E:\Work\P2\PrintApp\PrintApp.Common\obj\Release\PrintApp.Common.pdb
